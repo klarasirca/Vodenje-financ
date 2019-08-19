@@ -18,17 +18,21 @@ def nov_mesec(danes):
 #class Model:
     #nalozi, shrani! definiraj (dump, load)
 
+slovar_kategorij_odhodek = {"Hrana" : 0, "Obleka": 0, "Prosti čas": 0, "Transport": 0, 
+        "Dom": 0, "Položnice": 0, "Zdravstvene storitve": 0, "Potovanja": 0
+        , "Osebna nega": 0, "Zavarovanja": 0, "Najemnina": 0
+        , "Telekomunikacijske storitve": 0, "Krediti": 0, "Ostalo": 0}
+    
+slovar_kategorij_dohodek = {"Plača": 0, "Štipendija": 0, "Honorar": 0, "Posojilo": 0, 
+        "Žepnina": 0, "Pokojnina": 0, "Pasivni dohodki (najemnine itd.)": 0,
+        "Nagrada": 0, "Ostalo": 0}
+
 class Racun:
 
     def __init__(self, stanje, uporabnik):
         self.stanje = 0
-        self.slovar_kategorij_dohodek =  {"Hrana" : 0, "Obleka": 0, "Prosti čas": 0, "Transport": 0, 
-        "Dom": 0, "Položnice": 0, "Zdravstvene storitve": 0, "Potovanja": 0
-        , "Osebna nega": 0, "Zavarovanja": 0, "Najemnina": 0
-        , "Telekomunikacijske storitve": 0, "Krediti": 0, "Ostalo": 0}
-        self.slovar_kategorij_dohodek = {"Plača": 0, "Štipendija": 0, "Honorar": 0, "Posojilo": 0, 
-        "Žepnina": 0, "Pokojnina": 0, "Pasivni dohodki (najemnine itd.)": 0,
-        "Nagrada": 0, "Ostalo": 0}
+        self.slovar_kategorij_dohodek =  slovar_kategorij_dohodek
+        self.slovar_kategorij_odhodek = slovar_kategorij_odhodek
         self.uporabnik = uporabnik
         self.transakcija = Transakcija()
     
@@ -39,20 +43,25 @@ class Racun:
         return "Stanje na računu, uporabnika {0}: {1}".format(self.stanje, self.uporabnik)
     
     #ALI BOM SPLOH RABILA TE DVE??? PREGLEJ Z DEF KATEGORIJA!!
-    def uspela_transakcija(self, stevilo, nacin):
-        if nacin == "prihodek" or stevilo < self.stanje:
+    def uspesen_odhodek(self, stevilo):
+        if stevilo < self.stanje:
             return True
         else:
             return False
 
-    def dodaj_transakcijo(self, stevilo, nacin):
-        if nacin == "odhodek":
+    def uspesen_dohodek(self, stevilo):
+        return True
+
+    def dodaj_odhodek(self, stevilo):
+        if self.uspesen_odhodek(stevilo):
             self.stanje -= stevilo
             return self.stanje
         else:
-            self.stanje += stevilo
-            return self.stanje
+            return False
 
+    def dodaj_dohodek(self, stevilo):
+        self.stanje += stevilo
+        return self.stanje
 
     def kategorija_dodaj_dohodek(self, stevilo, kategorija):
         self.slovar_kategorij_dohodek[kategorija] = self.slovar_kategorij_dohodek.get(kategorija, 0) + stevilo
@@ -60,7 +69,7 @@ class Racun:
         return self.stanje
 
     def kategorija_dodaj_odhodek(self, stevilo, kategorija):
-        if self.uspela_transakcija(stevilo)
+        if self.uspesen_odhodek(stevilo):
             self.slovar_kategorij_odhodek[kategorija] = self.slovar_kategorij_odhodek.get(kategorija, 0) + stevilo
             return self.stanje
         else:
@@ -80,32 +89,44 @@ class Racun:
     #def procentualno_po_kategoriji_leto(self):
         
 
-    def procentualno_koliko_mi_ostalo_mesec(self, slovar_kategorij_odhodek, slovar_kategorij_dohodek):
-        odhodek_mesec = sum(slovar_kategorij_odhodek.values())
-        prihodek_mesec = sum(slovar_kategorij_dohodek.values())
+    def procentualno_koliko_mi_ostalo_mesec(self):
+        odhodek_mesec = sum(self.slovar_kategorij_odhodek.values())
+        prihodek_mesec = sum(self.slovar_kategorij_dohodek.values())
         return round(((prihodek_mesec - odhodek_mesec) / prihodek_mesec) * 100, 2)
 
-    def procentualno_koliko_sem_zapravil_mesec(self, slovar_kategorij_odhodek, slovar_kategorij_dohodek):
-        return 100 - procentualno_koliko_mi_ostalo_mesec(self, slovar_kategorij_odhodek, slovar_kategorij_dohodek)
+    def procentualno_koliko_sem_zapravil_mesec(self):
+       ost = self.procentualno_koliko_mi_ostalo_mesec
+       return 100 - ost
 
-    def opozorilo(self, slovar_kategorij_dohodek, slovar_kategorij_odhodek):
-        return procentualno_koliko_mi_ostalo_mesec(self, slovar_kategorij_dohodek, slovar_kategorij_odhodek) < 10
+    def opozorilo_deset(self):
+        return self.procentualno_koliko_mi_ostalo_mesec < 10
 
     #def procentualno_po_kategoriji_leto(self):
 
-    #def nastavi_limit(self, kategorija):
-        #bomo dodali lahko limit si za kategorijo (mesečno)
+    def custom_limit(self, kategorija, limit):
+        if self.slovar_kategorij_odhodek[kategorija]  > limit:
+            return True
+        else:
+            return False
     
     #def razlika_prihranki_prejsnji_mesec(self):
         
     
-    #def povprecje_income(self):
+    #povprecje_prihodek(self):
         
     
     #def povprecje_outcome(self):
         
 
-    #def dodaj_trajnik(self, datum, stevilo, kategorija):
+    def dodaj_trajnik(self, datum, stevilo, kategorija):
+        if dan == datum and kategorija in self.slovar_kategorij_dohodek.keys():
+            return self.kategorija_dodaj_dohodek(stevilo, kategorija)
+        elif dan == datum and kategorija in self.slovar_kategorij_odhodek.keys():
+            return self.kategorija_dodaj_odhodek
+        else:
+            pass
+
+            
         
 
     #def nov_mesec(self, se_nekaj):
