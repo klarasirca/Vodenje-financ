@@ -29,12 +29,12 @@ slovar_kategorij_dohodek = {"Plača": 0, "Štipendija": 0, "Honorar": 0, "Posoji
 
 class Racun:
 
-    def __init__(self, stanje, uporabnik):
+    def __init__(self, stanje, slovar_kategorij_dohodek, slovar_kategorij_odhodek, st_racuna):
         self.stanje = 0
         self.slovar_kategorij_dohodek =  slovar_kategorij_dohodek
         self.slovar_kategorij_odhodek = slovar_kategorij_odhodek
-        self.uporabnik = uporabnik
-        self.transakcija = Transakcija()
+        self.st_racuna = st_racuna
+        self.transakcije = Transakcija()
     
     def __repr__(self):
         return "Račun: stanje {0}, uporabnik {1}".format(self.stanje, self.uporabnik)
@@ -111,7 +111,7 @@ class Racun:
     
     #def razlika_prihranki_prejsnji_mesec(self):
         
-    #poskus
+   
     #povprecje_prihodek(self):
         
     
@@ -142,5 +142,9 @@ class Racun:
 #???
 
 class Transakcija:
-    def __init__(self):
+    def __init__(self, cas, znesek, tip, kategorija, komentar):
         self.cas = datetime.datetime.now()
+        self.znesek = znesek 
+        self.tip = tip
+        self.kategorija = kategorija
+        self.komentar = komentar
