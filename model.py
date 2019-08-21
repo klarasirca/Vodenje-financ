@@ -111,7 +111,7 @@ class Racun:
     
     #def razlika_prihranki_prejsnji_mesec(self):
         
-    
+    #poskus
     #povprecje_prihodek(self):
         
     
