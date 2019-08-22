@@ -61,8 +61,8 @@ def shraniRacun(racun: Racun):
         file.write(jsonRacun)
 
 def naloziRacun(racunId: int):
-    jsonRacun=""
+    jsonRacun = ""
     with open("racun_"+str(racunId)+".json", "r") as file:
         jsonRacun=file.read()
-    racAttr=json2obj(jsonRacun)
-    return Racun(racAttr.id,racAttr.stanje,racAttr.seznam_transakcij)
+    obj_racun=json2obj(jsonRacun)
+    return Racun(obj_racun.id, obj_racun.stanje, obj_racun.seznam_transakcij)
