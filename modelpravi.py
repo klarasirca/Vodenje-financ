@@ -52,8 +52,28 @@ class Racun:
             racun.stanje-=transakcija.znesek
         else:
             racun.stanje+=transakcija.znesek
+            
     
     #funkcije za analitiko
+    
+     def koliko_zapravljeno_kategorija(self, obdobje_mesec, obdobje_leto):
+        slovar_kategorija = {"Skupaj odhodki": 0, "Skupaj prihodki": 0}
+        for transakcija in self.seznam_transakcij:
+            cas_normalno = dt.fromtimestamp(transakcija[0])
+            leto = cas_normalno.year
+            mesec = cas_normalno.month
+            if mesec == obdobje_mesec and leto == obdobje_leto:
+                kategorija_st = transakcija[3]
+                tip = transakcija[2]
+                sez_kat = Kategorija().getSeznamKategorij(tip)
+                kat = sez_kat[kategorija_st]
+                slovar_kategorija[kat] = slovar_kategorija.get(kat, 0) + transakcija[1]
+                if tip == 0:
+                    slovar_kategorija["Skupaj odhodki"] = slovar_kategorija.get("Skupaj odhodki", 0) + transakcija[1]
+                else:
+                    slovar_kategorija["Skupaj prihodki"] = slovar_kategorija.get("Skupaj prihodki", 0) + transakcija[1]
+        return slovar_kategorija 
+        #predelati potrebno po času
 
 def shraniRacun(racun: Racun):
     jsonRacun = obj2json(racun)
