@@ -43,5 +43,19 @@ def dodaj_transakcijo_rezultat():
 def pridobi_kategorije(n):
     return obj2json(Kategorija().getSeznamKategorij(n))
 
+@bottle.get('/analiza_podatkov')
+def analiza_podatkov():
+    racunid = int(bottle.request.get_cookie("racunid"))
+    racun=naloziRacun(racunid)
+    mesec = int(bottle.request.query["mesec"])
+    leto = int(bottle.request.query["leto"])
+    slovar = racun.koliko_zapravljeno_kategorija(mesec, leto)
+    for kategorija in slovar.keys():
+        if kategorija in Kategorija().getSeznamKategorij(0):
+            print("Pod kategorijo {0} si {1} leta {2} zapravil/a {3} EUR.".format(kategorija, mesec, leto, slovar[kategorija]))
+        else:
+            print("Pod kategorijo {0} si {1} leta {2} zaslužil/a {3} EUR.".format(kategorija, mesec, leto, slovar[kategorija]))
+
+
 if __name__ == '__main__':
     bottle.run(reloader=True, debug=True)
