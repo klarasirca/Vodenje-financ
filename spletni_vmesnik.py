@@ -1,17 +1,15 @@
 import bottle
 from modelpravi import *
             
-@bottle.get('/<n:int>')
-def main_screen_selected(n):
-    print(n)
-    
-    return bottle.template('mainscreen.tpl', tip=n, seznamK=Kategorija().getSeznamKategorij(n))
+@bottle.get('/<tip>')
+def main_screen_selected(tip):
+    return bottle.template('dodaj_trans.tpl', tip=tip, seznamK=Kategorija().getSeznamKategorij(tip))
 
 @bottle.get('/')
 def main_screen():
     racun=naloziRacun(int(bottle.request.get_cookie("racunid")))
-
-    return bottle.template('main.tpl',seznamT=racun.seznam_transakcij, total=racun.stanje)
+    meseci = imena_mesecev
+    return bottle.template('domaca_stran.tpl',seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci)
 
 
 @bottle.get('/racun/<n:int>')
@@ -25,10 +23,11 @@ def dodaj_transakcijo():
 
     racunid = int(bottle.request.get_cookie("racunid"))
     znesek = int(bottle.request.forms.znesek)
-    tip = int(bottle.request.forms.tip)
-    kategorija = int(bottle.request.forms.kategorija)
+    tip = bottle.request.forms.tip
+    kategorija = bottle.request.forms.kategorija
     komentar = bottle.request.forms.komentar
 
+    print(kategorija)
     trans = Transakcija(znesek,tip,kategorija,komentar)
     racun=naloziRacun(racunid)
     Racun.dodaj_transakcijo(racun, trans)
@@ -39,23 +38,25 @@ def dodaj_transakcijo():
 def dodaj_transakcijo_rezultat():
     bottle.redirect("/")
 
-@bottle.get('/pridobi_kategorije/<n:int>')
-def pridobi_kategorije(n):
-    return obj2json(Kategorija().getSeznamKategorij(n))
+@bottle.get('/pridobi_kategorije/<tip>')
+def pridobi_kategorije(tip):
+    return obj2json(Kategorija().getSeznamKategorij(tip))
 
-@bottle.get('/analiza_podatkov')
+@bottle.get('/analiza_podatkov/')
 def analiza_podatkov():
     racunid = int(bottle.request.get_cookie("racunid"))
-    racun=naloziRacun(racunid)
+    racun = naloziRacun(racunid)
     mesec = int(bottle.request.query["mesec"])
     leto = int(bottle.request.query["leto"])
-    slovar = racun.koliko_zapravljeno_kategorija(mesec, leto)
-    for kategorija in slovar.keys():
-        if kategorija in Kategorija().getSeznamKategorij(0):
-            print("Pod kategorijo {0} si {1} leta {2} zapravil/a {3} EUR.".format(kategorija, mesec, leto, slovar[kategorija]))
-        else:
-            print("Pod kategorijo {0} si {1} leta {2} zaslužil/a {3} EUR.".format(kategorija, mesec, leto, slovar[kategorija]))
+    slovar_zapravljeno = koliko_kategorija(racun, "Odhodek", mesec, leto)
+    slovar_zasluzeno = koliko_kategorija(racun, "Dohodek", mesec, leto)
+    meseci = imena_mesecev
+    skupaj_odhodki = skupaj_prihodki_odhodki(racun, "Odhodek", mesec, leto)
+    skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Dohodek", mesec, leto)
+    slovar_procentov_odhodek = procentualno_kategorija(racun, "Odhodek", mesec, leto)
+    slovar_procentov_prihodek = procentualno_kategorija(racun, "Dohodek", mesec, leto)
+    return bottle.template("analiza.tpl", slovar_zapravljeno = slovar_zapravljeno, slovar_zasluzeno = slovar_zasluzeno, mesec = mesec, leto = leto, meseci = meseci, skupaj_odhodki = skupaj_odhodki, skupaj_prihodki = skupaj_prihodki, slovar_procentov_odhodek = slovar_procentov_odhodek, slovar_procentov_prihodek = slovar_procentov_prihodek)
+   
 
 
-if __name__ == '__main__':
-    bottle.run(reloader=True, debug=True)
+bottle.run(reloader=True, debug=True)
