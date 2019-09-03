@@ -1,5 +1,9 @@
 import bottle
 from modelpravi import *
+from datetime import date
+
+
+
             
 @bottle.get('/<tip>')
 def main_screen_selected(tip):
@@ -9,7 +13,8 @@ def main_screen_selected(tip):
 def main_screen():
     racun=naloziRacun(int(bottle.request.get_cookie("racunid")))
     meseci = imena_mesecev
-    return bottle.template('domaca_stran.tpl',seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci)
+    cas = date.today().strftime("%m-%d-%y")
+    return bottle.template('domaca_stran.tpl', seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci, cas = cas)
 
 
 @bottle.get('/racun/<n:int>')
@@ -48,15 +53,19 @@ def analiza_podatkov():
     racun = naloziRacun(racunid)
     mesec = int(bottle.request.query["mesec"])
     leto = int(bottle.request.query["leto"])
-    slovar_zapravljeno = koliko_kategorija(racun, "Odhodek", mesec, leto)
-    slovar_zasluzeno = koliko_kategorija(racun, "Dohodek", mesec, leto)
+    slovar_zapravljeno = koliko_kategorija(racun, "Odhodek", leto, mesec)
+    slovar_zasluzeno = koliko_kategorija(racun, "Dohodek", leto, mesec)
     meseci = imena_mesecev
-    skupaj_odhodki = skupaj_prihodki_odhodki(racun, "Odhodek", mesec, leto)
-    skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Dohodek", mesec, leto)
-    slovar_procentov_odhodek = procentualno_kategorija(racun, "Odhodek", mesec, leto)
-    slovar_procentov_prihodek = procentualno_kategorija(racun, "Dohodek", mesec, leto)
+    skupaj_odhodki = skupaj_prihodki_odhodki(racun, "Odhodek", leto, mesec)
+    skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Dohodek", leto, mesec)
+    slovar_procentov_odhodek = procentualno_kategorija(racun, "Odhodek", leto, mesec)
+    slovar_procentov_prihodek = procentualno_kategorija(racun, "Dohodek", leto, mesec)
     return bottle.template("analiza.tpl", slovar_zapravljeno = slovar_zapravljeno, slovar_zasluzeno = slovar_zasluzeno, mesec = mesec, leto = leto, meseci = meseci, skupaj_odhodki = skupaj_odhodki, skupaj_prihodki = skupaj_prihodki, slovar_procentov_odhodek = slovar_procentov_odhodek, slovar_procentov_prihodek = slovar_procentov_prihodek)
    
-
+@bottle.get('/seznam_transakcij/')
+def get_seznam_transakcij():
+    racun=naloziRacun(int(bottle.request.get_cookie("racunid")))
+    seznamT = racun.seznam_transakcij
+    return bottle.template('transakcije.tpl', seznamT = seznamT)
 
 bottle.run(reloader=True, debug=True)
