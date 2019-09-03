@@ -1,56 +1,67 @@
 % rebase('osnova')
 % from datetime import datetime
 
-<div style="flex: 1">
+<div class="container">
 
-Dodaj transakcijo: <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Izberi
+<div align="left">
+<h5>{{cas}}</h5>
+</div>
+
+<div class="mx-auto" style="width: 300px;">
+  <h1>Vodenje osebnih financ </h1>
+</div>
+
+<div align="right">
+<h5>Na računu: {{ total }} EUR</h5>
+</div>
+
+<div align="right">
+  <h4><a href="/seznam_transakcij/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Seznam transakcij</a></h4>
+</div>
+
+
+<h5> <div class="dropdown">
+  <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Dodaj transakcijo
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="/Dohodek">Dohodek</a>
     <a class="dropdown-item" href="/Odhodek">Odhodek</a>
   </div>
 </div>
+</h5>
 
-Analiza podatkov za:
+<h5>Analiza podatkov:</h5>
 <form action="/analiza_podatkov/">
-  mesec: <select name="mesec">
+ <div class="form-row">
+ 
+  <div class="form-group col-md-4">
+  <label for="mesec">Mesec:</label>
+  <select name="mesec" class="form-control">
+    <option selected>Izberi</option>
+    <option value = 0>Letna raven</option>
 %for mesec in meseci:
     <option value = {{meseci.index(mesec) + 1}}>{{mesec}}</option>
 %end
-            </select>
-  leto: <input type="number" name="leto" value = leto>
-  <input type="submit" value="submit">
+</select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputLeto">Leto:</label>
+      <input type="number" name="leto" value = leto class="form-control" id="inputLeto">
+    </div>
+  </div>
+  <input type="submit" class="btn btn-outline-secondary" value="Potrdi">
 </form>
 
 
-
-Na računu: 
-{{ total }}<br>
-
-
-<p class="h4">Transakcije:</p>
-<br>
-<table class="table">
-  <tr>
-    <th>Znesek</th>    
-    <th>Tip</th> 
-    <th>Kategorija</th> 
-    <th>Datum</th>
-    <th>Komentar</th>
-
-  </tr>
-  
-  % for trans in seznamT:
-    <tr>
-    <td>{{ trans['znesek']}} € </td>
-    <td>{{ trans['tip'] }}</td>
-    <td>{{ trans['kategorija'] }}</td>
-    <td>{{ datetime.fromtimestamp(trans['cas']).strftime("%d.%m.%Y %H:%M:%S") }}</td>
-    <td>{{ trans['komentar'] }}</td>
-    </tr>
-  % end
-</table>
+<div align="right">
+    <footer>© 2019, Klara Širca</footer>
 </div>
+
+</div>
+
+
+
+
+
 

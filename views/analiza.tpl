@@ -1,47 +1,71 @@
 % rebase('osnova')
 
 
+<div align="center">
+% if mesec == 0:
+<h1> Statistika za obdobje: Leto {{leto}} </h1>
+%else:
+<h1> Statistika za obdobje: {{meseci[mesec - 1]}}  {{leto}} </h1>
+%end
+</div>
+
+
+<div class="table-responsive col-md-6">
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Stroški</th>
+      <th scope="col">Kategorija</th>
+      <th scope="col">Znesek (v EUR)</th>
+      <th scope="col">Odstotek</th>
+    </tr>
+  </thead>
+  <tbody>
 %for kategorija in slovar_zapravljeno.keys():
-<div class="container">
-  <p>Pod kategorijo {{kategorija}} si v mesecu {{meseci[mesec - 1]}} leta {{leto}} zapravil/a {{slovar_zapravljeno[kategorija]}} EUR.</p>
+    <tr>
+      <th scope="row"></th>
+      <td>{{kategorija}}</td>
+      <td>{{slovar_zapravljeno[kategorija]}}</td>
+      <td>{{slovar_procentov_odhodek[kategorija]}} %</td>
+    </tr>
+%end
+    <tr>
+      <th scope="row"></th>
+      <td>Skupaj:</td>
+      <td>{{skupaj_odhodki}}</td>
+      <td>100 %</td>
+    </tr>
+    
+  </tbody>
+</table>
 </div>
 
-%end
-   
-
-
+<div class="table-responsive col-md-6">
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Prihodki</th>
+      <th scope="col">Kategorija</th>
+      <th scope="col">Znesek (v EUR)</th>
+      <th scope="col">Odstotek</th>
+    </tr>
+  </thead>
+  <tbody>
 %for kategorija in slovar_zasluzeno.keys():
-<div class="container">
-<p>Pod kategorijo {{kategorija}} si  v mesecu {{meseci[mesec - 1]}} leta {{leto}} zaslužil/a {{slovar_zasluzeno[kategorija]}} EUR.</p>
-</div>
-
+    <tr>
+      <th scope="row"></th>
+      <td>{{kategorija}}</td>
+      <td>{{slovar_zasluzeno[kategorija]}}</td>
+      <td>{{slovar_procentov_prihodek[kategorija]}} %</td>
+    </tr>
 %end
-
-
-<div class="container">
-<p>Skupaj si v mesecu {{meseci[mesec - 1]}} leta {{leto}} zapravil/a {{skupaj_odhodki}}.</p>
+    <tr>
+      <th scope="row"></th>
+      <td>Skupaj:</td>
+      <td>{{skupaj_prihodki}}</td>
+      <td>100 %</td>
+    </tr>
+    
+  </tbody>
+</table>
 </div>
-
-<div class="container">
-<p>Skupaj si v mesecu {{meseci[mesec - 1]}} leta {{leto}} zaslužil/a {{skupaj_prihodki}}.</p>
-</div>
-
-
-%for kategorija in slovar_procentov_odhodek.keys():
-<div class="container">
-  <p>Procentualno si za {{kategorija}} zapravil/a {{slovar_procentov_odhodek[kategorija]}} od vseh svojih odhodkov.</p>
-</div>
-
-%end
-
-
-%for kategorija in slovar_procentov_prihodek.keys():
-<div class="container">
-  <p>Procentualno si od {{kategorija}} zaslužil/a {{slovar_procentov_prihodek[kategorija]}} od vseh svojih prihodkov.</p>
-</div>
-
-%end
-
-
-
-   
