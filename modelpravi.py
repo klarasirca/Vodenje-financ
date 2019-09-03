@@ -23,7 +23,7 @@ class Kategorija:
         "Telekomunikacijske storitve", "Krediti", "Ostalo"]
 
     seznam_kategorij_dohodek = ["Plača", "Štipendija", "Honorar", "Posojilo", 
-            "Žepnina", "Pokojnina", "Pasivni dohodki (najemnine itd.)",
+            "Žepnina", "Pokojnina", "Najemnina",
             "Nagrada", "Ostalo"]
 
     def getSeznamKategorij(self, tip):
@@ -72,33 +72,36 @@ def naloziRacun(racunId):
 
 #funkcije za analitiko:
 
-def ali_je_transakcija_pravi_cas(transakcija: Transakcija, obdobje_mesec, obdobje_leto):
+def ali_je_transakcija_pravi_cas(transakcija: Transakcija, obdobje_leto, obdobje_mesec = 0):
     cas_normalno = dt.fromtimestamp(transakcija["cas"])
     leto = cas_normalno.year
     mesec = cas_normalno.month
-    return mesec == obdobje_mesec and leto == obdobje_leto
+    if obdobje_mesec == 0:
+        return leto == obdobje_leto
+    else:
+        return mesec == obdobje_mesec and leto == obdobje_leto
 
 
-def koliko_kategorija(racun: Racun, tip, obdobje_mesec, obdobje_leto):
+def koliko_kategorija(racun: Racun, tip, obdobje_leto, obdobje_mesec = 0):
         slovar_kategorija = {}
         for transakcija in racun.seznam_transakcij:
-            if ali_je_transakcija_pravi_cas(transakcija, obdobje_mesec, obdobje_leto) and transakcija["tip"] == tip:
+            if ali_je_transakcija_pravi_cas(transakcija, obdobje_leto, obdobje_mesec) and transakcija["tip"] == tip:
                 kat = transakcija['kategorija']
                 slovar_kategorija[kat] = slovar_kategorija.get(kat, 0) + transakcija["znesek"]
         return slovar_kategorija
 
 
-def skupaj_prihodki_odhodki(racun: Racun, tip, obdobje_mesec, obdobje_leto):
-    slovar_kategorij = koliko_kategorija(racun, tip, obdobje_mesec, obdobje_leto)
+def skupaj_prihodki_odhodki(racun: Racun, tip, obdobje_leto, obdobje_mesec):
+    slovar_kategorij = koliko_kategorija(racun, tip, obdobje_leto, obdobje_mesec)
     skupaj_tip = 0
     for kategorija in slovar_kategorij:
         znesek = slovar_kategorij[kategorija]
         skupaj_tip += znesek
     return skupaj_tip
 
-def procentualno_kategorija(racun: Racun, tip, obdobje_mesec, obdobje_leto):
-    slovar_kategorij = koliko_kategorija(racun, tip, obdobje_mesec, obdobje_leto)
-    skupaj = skupaj_prihodki_odhodki(racun, tip, obdobje_mesec, obdobje_leto)
+def procentualno_kategorija(racun: Racun, tip, obdobje_leto, obdobje_mesec):
+    slovar_kategorij = koliko_kategorija(racun, tip, obdobje_leto, obdobje_mesec)
+    skupaj = skupaj_prihodki_odhodki(racun, tip, obdobje_leto, obdobje_mesec)
     slovar_procentov = {}
     for kategorija in slovar_kategorij:
         koliko_kat = slovar_kategorij[kategorija]

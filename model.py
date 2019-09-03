@@ -168,3 +168,15 @@ class Transakcija:
     <body>
         {{ !base }}
     </body>
+
+<h5>Analiza podatkov za: 
+<form action="/analiza_podatkov/">
+  Mesec: <select name="mesec">
+    <option>Izberi</option>
+    <option value = 0>Letna raven</option>
+%for mesec in meseci:
+    <option value = {{meseci.index(mesec) + 1}}>{{mesec}}</option>
+%end
+</select>
+Leto: <input type="number" class="form-control" name="leto" value = leto placeholder="Leto" id="formGroupExampleInput2">
+</form>
