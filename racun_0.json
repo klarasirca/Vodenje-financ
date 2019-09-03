@@ -1,48 +1,34 @@
 {
   "id": 0,
-  "stanje": 15474,
+  "stanje": 32661,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
       "znesek": 0,
-      "tip": "dohodek",
+      "tip": "Dohodek",
       "kategorija": "\u017depnina",
-      "komentar": ""
+      "komentar": "za mesec avgust"
     },
     {
       "cas": 1567166191.123699,
       "znesek": 200,
-      "tip": "odhodek",
+      "tip": "Odhodek",
       "kategorija": "Hrana",
-      "komentar": "nana"
+      "komentar": "Hofer"
     },
     {
       "cas": 1567168206.914614,
       "znesek": 134,
-      "tip": "dohodek",
+      "tip": "Dohodek",
       "kategorija": "\u0160tipendija",
       "komentar": "mesec sep"
-    },
-    {
-      "cas": 1567168264.024222,
-      "znesek": 0,
-      "tip": "Dohodek",
-      "kategorija": "Honorar",
-      "komentar": ""
-    },
-    {
-      "cas": 1567168411.270539,
-      "znesek": 120,
-      "tip": "Dohodek",
-      "kategorija": "Honorar",
-      "komentar": "jjdj"
     },
     {
       "cas": 1567168463.918705,
       "znesek": 120,
       "tip": "Dohodek",
       "kategorija": "\u017depnina",
-      "komentar": ""
+      "komentar": "sep"
     },
     {
       "cas": 1567168538.227028,
@@ -56,35 +42,63 @@
       "znesek": 30,
       "tip": "Dohodek",
       "kategorija": "Pla\u010da",
-      "komentar": "malo"
+      "komentar": "majhna pla\u010da"
     },
     {
       "cas": 1567338503.016652,
       "znesek": 130,
       "tip": "Dohodek",
       "kategorija": "\u0160tipendija",
-      "komentar": "test5"
+      "komentar": "\u0161tipendija sep"
     },
     {
       "cas": 1567351636.302324,
       "znesek": 12345,
       "tip": "Dohodek",
-      "kategorija": "Pasivni dohodki (najemnine itd.)",
-      "komentar": "flet"
+      "kategorija": "Najemnina",
+      "komentar": "stanovanje v Lj"
     },
     {
-      "cas": 1567352526.445957,
-      "znesek": 12,
+      "cas": 1567445297.979078,
+      "znesek": 60,
       "tip": "Odhodek",
-      "kategorija": "Prosti \u010das",
-      "komentar": "hm"
+      "kategorija": "Hrana",
+      "komentar": "spar"
     },
     {
-      "cas": 1567369390.744133,
-      "znesek": 120,
-      "tip": "racun1",
-      "kategorija": "\u0160tipendija",
-      "komentar": "Stipendija sep"
+      "cas": 1567445318.699672,
+      "znesek": 80,
+      "tip": "Odhodek",
+      "kategorija": "Polo\u017enice",
+      "komentar": "elektrika"
+    },
+    {
+      "cas": 1567450955.735629,
+      "znesek": 2000,
+      "tip": "Dohodek",
+      "kategorija": "Nagrada",
+      "komentar": "sugar daddy"
+    },
+    {
+      "cas": 1567502065.714391,
+      "znesek": 190,
+      "tip": "Odhodek",
+      "kategorija": "Zavarovanja",
+      "komentar": "Sava"
+    },
+    {
+      "cas": 1567511057.59053,
+      "znesek": 300,
+      "tip": "Odhodek",
+      "kategorija": "Najemnina",
+      "komentar": "Najemnina stanovanje"
+    },
+    {
+      "cas": 1567514573.282706,
+      "znesek": 1000,
+      "tip": "Odhodek",
+      "kategorija": "Zdravstvene storitve",
+      "komentar": "Operacija"
     }
   ]
 }
