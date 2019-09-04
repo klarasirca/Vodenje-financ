@@ -1,6 +1,6 @@
 {
   "id": 0,
-  "stanje": 32661,
+  "stanje": 35029,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
@@ -99,6 +99,55 @@
       "tip": "Odhodek",
       "kategorija": "Zdravstvene storitve",
       "komentar": "Operacija"
+    },
+    {
+      "cas": 1567522733.579222,
+      "znesek": 34,
+      "tip": "Dohodek",
+      "kategorija": "Nagrada",
+      "komentar": "mami"
+    },
+    {
+      "cas": 1567544121.07891,
+      "znesek": 44,
+      "tip": "Odhodek",
+      "kategorija": "Dom",
+      "komentar": "vaza"
+    },
+    {
+      "cas": 1567544174.738955,
+      "znesek": 2222,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "pla\u010da sep"
+    },
+    {
+      "cas": 1567544354.404992,
+      "znesek": 12,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "neki"
+    },
+    {
+      "cas": 1567545788.941539,
+      "znesek": 22,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "TEST"
+    },
+    {
+      "cas": 1567546353.169846,
+      "znesek": 22,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "TEST"
+    },
+    {
+      "cas": 1567546491.333519,
+      "znesek": 12,
+      "tip": "Dohodek",
+      "kategorija": "\u0160tipendija",
+      "komentar": "HAH"
     }
   ]
 }
