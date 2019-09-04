@@ -1,21 +1,30 @@
 %rebase("osnova")
 
-<form class="dropdown-menu p-4">
-  <div class="form-group">
-    <label for="ImePriimek">Ime in Priimek</label>
-    <input type="text" class="form-control" id="ImePriimek" placeholder="Ime Priimek">
-  </div>
-  <div class="form-group">
-    <label for="racun">Številka računa</label>
-    <input type="text" class="form-control" id="racun" placeholder="e.g.: racun0">
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-      <label class="form-check-label" for="dropdownCheck2">
-        Remember me
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+<div class ="container">
+
+<div align="center">
+<h1> Dobrodošli na strani za vodenje osebnih financ! </h1>
+</div>
+
+<h5>Če želite, da so vaši računi čisti, vaša denarnica organizirana ter polna, se vpišite ter začnite z vodenjem svojih osebnih financ že danes!</h5>
+
+
+<img src="../../img/denarcek.jpeg" class="rounded float-right"" alt="Denarcek">
+
+
+<form action="/domaca_stran/">
+  <h5>Ime in priimek: <input type="text" class="form-control-sm" name="ime_priimek"></h5>
+
+  <h5>Številka računa: <input type="number"class="form-control-sm"  name="racunid"></h5>
+  <input type="submit" class="btn btn-outline-secondary" value="Vpiši se">
 </form>
+</div>
+
+
+
+
+
+<div align="right">
+    <footer>© 2019, Klara Širca</footer>
+</div>
+</div>
