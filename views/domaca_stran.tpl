@@ -3,6 +3,11 @@
 
 <div class="container">
 
+
+<div align="right">
+  <h4><a href="/domaca_stran/odjava/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Odjava</a></h4>
+</div>
+
 <div align="left">
 <h5>{{cas}}</h5>
 </div>
@@ -12,12 +17,17 @@
 </div>
 
 <div align="right">
-<h5> {{ime_priimek}} </h5>
+<h5> Številka računa: {{racunid}} </h5>
+<h5> Ime in priimek: {{ime_priimek}} </h5>
 <h5>Na računu: {{ total }} EUR</h5>
 </div>
 
 <div align="right">
   <h4><a href="/seznam_transakcij/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Seznam transakcij</a></h4>
+</div>
+
+<div align="right">
+  <h4><a href="/opozorilo/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Nastavi opozorilo</a></h4>
 </div>
 
 
@@ -55,9 +65,7 @@
 </form>
 
 
-<div align="right">
-    <footer>© 2019, Klara Širca</footer>
-</div>
+
 
 </div>
 
