@@ -2,6 +2,9 @@ import bottle
 from modelpravi import *
 from datetime import date
 
+@bottle.get('/')
+def uporabnik():
+    return bottle.template('zacetna_stran.tpl')
 
 
             
@@ -9,12 +12,16 @@ from datetime import date
 def main_screen_selected(tip):
     return bottle.template('dodaj_trans.tpl', tip=tip, seznamK=Kategorija().getSeznamKategorij(tip))
 
-@bottle.get('/')
+@bottle.get('/domaca_stran/')
 def main_screen():
+    ime_priimek = bottle.request.get_cookie("ime_priimek")
+    if ime_priimek is None:
+        ime_priimek = (bottle.request.query["ime_priimek"])
+        bottle.response.set_cookie("ime_priimek",ime_priimek, path="/domaca_stran")
     racun=naloziRacun(int(bottle.request.get_cookie("racunid")))
     meseci = imena_mesecev
     cas = date.today().strftime("%m-%d-%y")
-    return bottle.template('domaca_stran.tpl', seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci, cas = cas)
+    return bottle.template('domaca_stran.tpl', seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci, cas = cas, ime_priimek = ime_priimek)
 
 
 @bottle.get('/racun/<n:int>')
