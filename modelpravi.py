@@ -2,6 +2,7 @@ import json
 import datetime
 from datetime import datetime as dt
 from enum import IntEnum
+import os.path
 
 def json2obj(data): 
     obj_dict = json.loads(data)
@@ -11,7 +12,7 @@ def obj2json(object):
     return json.dumps(object, indent = 2, default = lambda obj: obj.__dict__)
 
 
-imena_mesecev = ["januar", "februar", "marec", "april", "maj", "junij", "julij", "avgust", "september", "oktober", "november", "december"]
+imena_mesecev = ["Januar", "Februar", "Marec", "April", "Maj", "Junij", "Julij", "Avgust", "September", "Oktober", "November", "December"]
 
 
 
@@ -43,10 +44,12 @@ class Transakcija:
 
 class Racun:
 
-    def __init__(self, id, stanje = 0, seznam_transakcij = []):
+    def __init__(self,id, lastnik, stanje = 0, seznam_transakcij = []):
+        self.lastnik = lastnik
         self.id = id
         self.stanje = stanje
         self.seznam_transakcij = seznam_transakcij
+       
 
     @staticmethod    
     def dodaj_transakcijo(racun, transakcija: Transakcija):
@@ -56,6 +59,12 @@ class Racun:
         else:
             racun.stanje += transakcija.znesek
             
+def ustvari_racun(id, ime):
+    racunTemplate = naloziRacun("template")
+    racunTemplate.id = id
+    racunTemplate.lastnik = ime 
+    shraniRacun(racunTemplate)
+
 
 
 def shraniRacun(racun: Racun):
@@ -63,12 +72,17 @@ def shraniRacun(racun: Racun):
     with open("racun_" + str(racun.id) + ".json", "w+") as file:
         file.write(jsonRacun)
 
+
 def naloziRacun(racunId):
-    jsonRacun = ""
-    with open("racun_" + str(racunId) + ".json", "r") as file:
-        jsonRacun = file.read()
-    obj_racun = json2obj(jsonRacun)
-    return obj_racun
+    if os.path.exists("racun_" + str(racunId) + ".json"):
+        jsonRacun = ""
+        with open("racun_" + str(racunId) + ".json", "r") as file:
+            jsonRacun = file.read()
+        obj_racun = json2obj(jsonRacun)
+        return obj_racun
+    else:
+        print("Račun ne obstaja")
+        return None
 
 #funkcije za analitiko:
 
@@ -108,3 +122,11 @@ def procentualno_kategorija(racun: Racun, tip, obdobje_leto, obdobje_mesec):
         procent = round ((koliko_kat / skupaj) * 100, 1)
         slovar_procentov[kategorija] = procent
     return slovar_procentov
+
+def opozorilo(racun: Racun, limit, kategorija, obdobje_leto, obdobje_mesec):
+    slovar_kategorij = koliko_kategorija(racun, "Odhodek", obdobje_leto, obdobje_mesec)
+    zapravljeno_pod_kategorijo = slovar_kategorij[kategorija]
+    return zapravljeno_pod_kategorijo > limit
+
+
+    
