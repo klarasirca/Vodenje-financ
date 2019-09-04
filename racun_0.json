@@ -1,6 +1,7 @@
 {
+  "lastnik": "Klara",
   "id": 0,
-  "stanje": 35029,
+  "stanje": 36328,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
@@ -148,6 +149,48 @@
       "tip": "Dohodek",
       "kategorija": "\u0160tipendija",
       "komentar": "HAH"
+    },
+    {
+      "cas": 1567588551.79867,
+      "znesek": 22,
+      "tip": "Dohodek",
+      "kategorija": "\u0160tipendija",
+      "komentar": "test"
+    },
+    {
+      "cas": 1567588580.686602,
+      "znesek": 23,
+      "tip": "Dohodek",
+      "kategorija": "\u017depnina",
+      "komentar": "dohodek"
+    },
+    {
+      "cas": 1567588606.743836,
+      "znesek": 2,
+      "tip": "Dohodek",
+      "kategorija": "\u0160tipendija",
+      "komentar": "d"
+    },
+    {
+      "cas": 1567590167.913197,
+      "znesek": 2,
+      "tip": "Dohodek",
+      "kategorija": "\u0160tipendija",
+      "komentar": "w"
+    },
+    {
+      "cas": 1567602316.557688,
+      "znesek": 50,
+      "tip": "Dohodek",
+      "kategorija": "Honorar",
+      "komentar": "TEST"
+    },
+    {
+      "cas": 1567617766.910062,
+      "znesek": 1200,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "september"
     }
   ]
 }

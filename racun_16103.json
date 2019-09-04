@@ -1,0 +1,14 @@
+{
+  "lastnik": "Urban \u0160irca",
+  "id": 16103,
+  "stanje": 345345,
+  "seznam_transakcij": [
+    {
+      "cas": 1567618814.539432,
+      "znesek": 345345,
+      "tip": "Dohodek",
+      "kategorija": "Pla\u010da",
+      "komentar": ""
+    }
+  ]
+}
