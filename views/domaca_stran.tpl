@@ -12,6 +12,7 @@
 </div>
 
 <div align="right">
+<h5> {{ime_priimek}} </h5>
 <h5>Na računu: {{ total }} EUR</h5>
 </div>
 
