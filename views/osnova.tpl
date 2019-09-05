@@ -22,6 +22,7 @@
         h5 {font-family: 'Montserrat', sans-serif;font-size: 20px;padding-top: 15px;}
         h4 {font-family: 'Montserrat', sans-serif;font-size: 20px;padding-top: 15px; alignment: Alignment.topRight}
         footer {font-family: 'Montserrat', sans-serif;position: absolute;bottom: 0;width: 100%;height: 2.5rem;}
+        #overlay {position: fixed; z-index: 2;}
     </style>
 </head>
     <body>

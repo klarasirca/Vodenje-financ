@@ -3,10 +3,10 @@
 
 <div class="container">
 
-
 <div align="right">
   <h4><a href="/domaca_stran/odjava/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Odjava</a></h4>
 </div>
+
 
 <div align="left">
 <h5>{{cas}}</h5>
@@ -22,15 +22,15 @@
 <h5>Na računu: {{ total }} EUR</h5>
 </div>
 
-<div align="right">
+<div align="left">
   <h4><a href="/seznam_transakcij/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Seznam transakcij</a></h4>
 </div>
 
-<div align="right">
+<div align="left">
   <h4><a href="/opozorilo/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Nastavi opozorilo</a></h4>
 </div>
 
-
+<div align="left">
 <h5> <div class="dropdown">
   <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   Dodaj transakcijo
@@ -41,6 +41,7 @@
   </div>
 </div>
 </h5>
+</div>
 
 <h5>Analiza podatkov:</h5>
 <form action="/analiza_podatkov/">

@@ -4,8 +4,11 @@
 <h1>Nastavite opozorilo za določeno kategorijo</h1>
 
 <h5>V kolikor boste presegli znesek, ki si ga nastavite za določeno kategorijio, boste v zavihku analiza o tem obveščeni.</h5>
-<h5>Pozor: opozorilo si lahko nastavite le za eno kategorijo naenkrat. Seveda pa jo lahko spreminjate.</h5>
+<h5>Opozorilo lahko spreminjate.</h5>
 
+<div align="left">
+  <h4><a href='/opozorilo/odstrani_opozorilo/' class="btn btn-outline-secondary" role="button" aria-pressed="true">Odstrani opozorilo</a></h4>
+</div>
 
 <form action="/nastavi_opozorilo/" method="POST">
                 <h5>Kategorija: 

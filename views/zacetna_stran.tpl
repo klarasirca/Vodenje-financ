@@ -15,13 +15,15 @@
 
 <img src="../../img/denarcek.jpeg" class="rounded float-right"" alt="Denarcek">
 
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
+%if login == False:
+<div id = "overlay" class="alert alert-warning alert-dismissible fade show" role="alert">
   Registriraj se, da ti stran dodeli številko računa!
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+%end
+
 
 
 <h3>Log in:</h3>

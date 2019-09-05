@@ -5,7 +5,7 @@ from random import *
 
 @bottle.get('/')
 def uporabnik():
-    return bottle.template('zacetna_stran.tpl')
+    return bottle.template('zacetna_stran.tpl', login = True)
 
 @bottle.post('/prijava/')
 def prijavi_se():
@@ -46,7 +46,7 @@ def domaca_stran():
     racun = naloziRacun(racunid)
     print(racunid)
     if racun is None:
-        return bottle.template('zacetna_stran.tpl')
+        return bottle.template('zacetna_stran.tpl', login = False)
     ime_priimek = racun.lastnik
     meseci = imena_mesecev
     cas = date.today().strftime("%d-%m-%y")
@@ -56,8 +56,6 @@ def domaca_stran():
 def odjavi_me():
     bottle.response.delete_cookie("racunid", path="/")
     bottle.response.delete_cookie("ime_priimek", path="/")
-    bottle.response.delete_cookie("limit", path = "/")
-    bottle.response.delete_cookie("kategorija_limit", path = "/")
     return bottle.redirect("/")
 
 @bottle.post('/dodaj_transakcijo')
@@ -69,7 +67,7 @@ def dodaj_transakcijo():
     komentar = bottle.request.forms.komentar
     trans = Transakcija(znesek,tip,kategorija,komentar)
     racun=naloziRacun(racunid)
-    Racun.dodaj_transakcijo(racun, trans)
+    racun.dodaj_transakcijo(trans)
     shraniRacun(racun)
     bottle.redirect("/dodaj_transakcijo")
 
@@ -94,10 +92,9 @@ def analiza_podatkov():
     skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Dohodek", leto, mesec)
     slovar_procentov_odhodek = procentualno_kategorija(racun, "Odhodek", leto, mesec)
     slovar_procentov_prihodek = procentualno_kategorija(racun, "Dohodek", leto, mesec)
-    limit = int(bottle.request.get_cookie("limit"))
-    kategorija_limit = bottle.request.get_cookie("kategorija_limit")
-    opozorilo_nastavljeno = opozorilo(racun, limit, kategorija_limit, leto, mesec)
-    return bottle.template("analiza.tpl", slovar_zapravljeno = slovar_zapravljeno, slovar_zasluzeno = slovar_zasluzeno, mesec = mesec, leto = leto, meseci = meseci, skupaj_odhodki = skupaj_odhodki, skupaj_prihodki = skupaj_prihodki, slovar_procentov_odhodek = slovar_procentov_odhodek, slovar_procentov_prihodek = slovar_procentov_prihodek, opozorilo_nastavljeno = opozorilo_nastavljeno, limit = limit, kategorija_limit = kategorija_limit)
+    ali_je_limit_presezen = opozorilo(racun, racun.slovar_opozoril, leto, mesec)
+    slovar_opozoril = racun.slovar_opozoril 
+    return bottle.template("analiza.tpl", slovar_zapravljeno = slovar_zapravljeno, slovar_zasluzeno = slovar_zasluzeno, mesec = mesec, leto = leto, meseci = meseci, skupaj_odhodki = skupaj_odhodki, skupaj_prihodki = skupaj_prihodki, slovar_procentov_odhodek = slovar_procentov_odhodek, slovar_procentov_prihodek = slovar_procentov_prihodek, ali_je_limit_presezen = ali_je_limit_presezen, slovar_opozoril = slovar_opozoril)
    
 @bottle.get('/seznam_transakcij/')
 def get_seznam_transakcij():
@@ -106,27 +103,48 @@ def get_seznam_transakcij():
     return bottle.template('transakcije.tpl', seznamT = seznamT)
 
 @bottle.get('/opozorilo/')
-def opozorilo_temp():
+def opozorilo_pridobi_kategorijo():
     seznamK = Kategorija().getSeznamKategorij("Odhodek")
-    return bottle.template('opozorilo.tpl', seznamK = seznamK)
+    return bottle.template('nastavi_opozorilo.tpl', seznamK = seznamK)
 
 
 @bottle.post('/nastavi_opozorilo/')
-def nastavi_opozorilo():
+def nastavi_opozorilo_v_slovar():
     limit = bottle.request.forms["limit"]
-    kategorija_limit = bottle.request.forms["kategorija_limit"]
-    bottle.response.set_cookie("limit", limit, path = "/analiza_podatkov/")
-    bottle.response.set_cookie("kategorija_limit",kategorija_limit, path="/analiza_podatkov/")
+    kategorija_limit = bottle.request.forms.kategorija_limit
+    racun = naloziRacun(int(bottle.request.get_cookie("racunid")))
+    racun.nastavi_opozorilo(limit, kategorija_limit)
+    shraniRacun(racun)
     return bottle.redirect('/nastavi_opozorilo/')
 
 @bottle.get('/nastavi_opozorilo/')
 def opozorilo_rezultat():
-    return bottle.template('uspesna_nastavitev.tpl')
+   return bottle.template('uspesna_nastavitev_odstranitev.tpl', nastavi = True)
+
+@bottle.get('/opozorilo/odstrani_opozorilo/')
+def pridobi_kategorije():
+    seznamK = Kategorija().getSeznamKategorij("Odhodek")
+    return bottle.template('odstrani_opozorilo.tpl', seznamK = seznamK)
+
+@bottle.post('/odstranjeno/')
+def odstrani():
+    kategorija_limit = bottle.request.forms.kategorija_limit
+    racun = naloziRacun(int(bottle.request.get_cookie("racunid")))
+    racun.odstrani_opozorilo(kategorija_limit)
+    shraniRacun(racun)
+    return bottle.redirect('/odstranjeno/')
+
+@bottle.get('/odstranjeno/')
+def odstrani_rezultat():
+    return bottle.template('uspesna_nastavitev_odstranitev', nastavi = False)
+
+
+
     
 
 @bottle.get('/img/<ime>')
 def slike(ime):
-    return bottle.static_file(ime, root = 'img')
+   return bottle.static_file(ime, root = 'img')
 
 
 

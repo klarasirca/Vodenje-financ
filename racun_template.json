@@ -2,5 +2,6 @@
   "id": -1,
     "stanje": 0,
     "seznam_transakcij": [
-    ]
+    ],
+    "slovar_opozoril": {}
   }
