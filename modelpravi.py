@@ -44,20 +44,32 @@ class Transakcija:
 
 class Racun:
 
-    def __init__(self,id, lastnik, stanje = 0, seznam_transakcij = []):
+    def __init__(self,id, lastnik, stanje = 0, seznam_transakcij = [], slovar_opozoril = {}):
         self.lastnik = lastnik
         self.id = id
         self.stanje = stanje
         self.seznam_transakcij = seznam_transakcij
+        self.slovar_opozoril = slovar_opozoril
        
 
-    @staticmethod    
-    def dodaj_transakcijo(racun, transakcija: Transakcija):
-        racun.seznam_transakcij.append(transakcija)
-        if(transakcija.tip == 'odhodek'):
-            racun.stanje -= transakcija.znesek
+      
+    def dodaj_transakcijo(self, transakcija: Transakcija):
+        self.seznam_transakcij.append(transakcija)
+        if transakcija.tip == 'Odhodek':
+            self.stanje -= transakcija.znesek
+        elif transakcija.tip == 'Dohodek':
+            self.stanje += transakcija.znesek
+
+    def nastavi_opozorilo(self, limit, kategorija):
+        self.slovar_opozoril[kategorija] = limit
+
+    def odstrani_opozorilo(self, kategorija):
+        if kategorija in self.slovar_opozoril:
+            del self.slovar_opozoril[kategorija]
         else:
-            racun.stanje += transakcija.znesek
+            pass
+
+
             
 def ustvari_racun(id, ime):
     racunTemplate = naloziRacun("template")
@@ -123,10 +135,22 @@ def procentualno_kategorija(racun: Racun, tip, obdobje_leto, obdobje_mesec):
         slovar_procentov[kategorija] = procent
     return slovar_procentov
 
-def opozorilo(racun: Racun, limit, kategorija, obdobje_leto, obdobje_mesec):
+def opozorilo(racun: Racun, slovar_opozoril, obdobje_leto, obdobje_mesec):
+    seznam_je_limit_presezen = []
     slovar_kategorij = koliko_kategorija(racun, "Odhodek", obdobje_leto, obdobje_mesec)
-    zapravljeno_pod_kategorijo = slovar_kategorij[kategorija]
-    return zapravljeno_pod_kategorijo > limit
+    if slovar_kategorij == {}:
+        return seznam_je_limit_presezen
+    for kategorija in slovar_opozoril:
+        if kategorija in slovar_kategorij:
+            zapravljeno_pod_kategorijo = slovar_kategorij[kategorija]
+            limit = int(slovar_opozoril[kategorija])
+            if zapravljeno_pod_kategorijo > limit:
+                seznam_je_limit_presezen.append(kategorija)
+    return seznam_je_limit_presezen
+
+
+
+
 
 
     
