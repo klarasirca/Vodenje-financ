@@ -2,9 +2,9 @@
 
 <div align="center">
 %if nastavi == True:
-  <h1>Uspešno nastavljeno opozorilo!</h1>
+  <h1>Opozorilo nastavljeno!</h1>
 %else:
-  <h1>Uspešno odstranjeno opozorilo!</h1>
+  <h1>Opozorilo odstranjeno!</h1>
 %end
 
 
