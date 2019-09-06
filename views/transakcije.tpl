@@ -3,30 +3,31 @@
 
 <div style="flex: 1">
 
-<div align="right">
-<h5>Datum: {{cas}}</h5>
-</div>
+  <div align="right">
+    <h5>Datum: {{cas}}</h5>
+  </div>
 
-<h3>Transakcije:</h3>
-<br>
-<table class="table">
-  <tr>
-    <th>Znesek</th>    
-    <th>Tip</th> 
-    <th>Kategorija</th> 
-    <th>Datum</th>
-    <th>Komentar</th>
-
-  </tr>
-  
-  % for trans in seznamT:
+  <h3>Transakcije:</h3>
+  <br>
+  <table class="table">
     <tr>
-    <td>{{ trans['znesek']}} € </td>
-    <td>{{ trans['tip'] }}</td>
-    <td>{{ trans['kategorija'] }}</td>
-    <td>{{ datetime.fromtimestamp(trans['cas']).strftime("%d.%m.%Y %H:%M:%S") }}</td>
-    <td>{{ trans['komentar'] }}</td>
+      <th>Znesek</th>    
+      <th>Tip</th> 
+      <th>Kategorija</th> 
+      <th>Datum</th>
+      <th>Komentar</th>
+
     </tr>
-  % end
-</table>
+  
+    % for trans in seznam_transakcij:
+    <tr>
+      <td>{{ trans['znesek']}} € </td>
+      <td>{{ trans['tip'] }}</td>
+      <td>{{ trans['kategorija'] }}</td>
+      <td>{{ datetime.fromtimestamp(trans['cas']).strftime("%d.%m.%Y %H:%M:%S") }}</td>
+      <td>{{ trans['komentar'] }}</td>
+    </tr>
+    % end
+  </table>
+  
 </div>
