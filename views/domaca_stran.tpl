@@ -4,44 +4,55 @@
 <div class="container">
 
 <div align="right">
-  <h4><a href="/domaca_stran/odjava/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Odjava</a></h4>
+<h5><i class="fas fa-user-circle"></i> {{ime_priimek}} </h5>
+<h5><i class="fas fa-list-ol"></i> Številka računa: {{racunid}} </h5>
+<h5><i class="fas fa-coins"></i> Na računu: {{ total }} EUR</h5>
 </div>
 
-
-<div align="left">
-<h5>{{cas}}</h5>
-</div>
-
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" align="center" style="width: 600px;">
   <h1>Vodenje osebnih financ </h1>
 </div>
 
-<div align="right">
-<h5> Številka računa: {{racunid}} </h5>
-<h5> Ime in priimek: {{ime_priimek}} </h5>
-<h5>Na računu: {{ total }} EUR</h5>
-</div>
 
-<div align="left">
-  <h4><a href="/seznam_transakcij/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Seznam transakcij</a></h4>
-</div>
 
-<div align="left">
-  <h4><a href="/opozorilo/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Nastavi opozorilo</a></h4>
-</div>
 
-<div align="left">
-<h5> <div class="dropdown">
-  <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Dodaj transakcijo
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<div align="center" padding-top:"50px">
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <a href="/seznam_transakcij/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Seznam transakcij</a>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dodaj transakcijo
+    </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="/Dohodek">Dohodek</a>
     <a class="dropdown-item" href="/Odhodek">Odhodek</a>
+    </div>
   </div>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Opozorilo
+    </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/opozorilo/">Nastavi opozorilo</a>
+    <a class="dropdown-item" href='/opozorilo/odstrani_opozorilo/'>Odstrani opozorilo</a>
+    </div>
+  </div>
+  <a href="/domaca_stran/odjava/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Odjava</a>
 </div>
-</h5>
 </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 <h5>Analiza podatkov:</h5>
 <form action="/analiza_podatkov/">
@@ -49,8 +60,8 @@
  
   <div class="form-group col-md-4">
   <label for="mesec">Mesec:</label>
-  <select name="mesec" class="form-control">
-    <option selected>Izberi</option>
+  <select name="mesec" class="form-control" required>
+    <option value="">Izberi</option>
     <option value = 0>Letna raven</option>
 %for mesec in meseci:
     <option value = {{meseci.index(mesec) + 1}}>{{mesec}}</option>
@@ -59,7 +70,8 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputLeto">Leto:</label>
-      <input type="number" name="leto" value = leto class="form-control" id="inputLeto">
+      <input type="number" name="leto" value="2019" placeholder="Leto" class="form-control" id="inputLeto" max="2050" min="1960" required>
+     
     </div>
   </div>
   <input type="submit" class="btn btn-outline-secondary" value="Potrdi">
