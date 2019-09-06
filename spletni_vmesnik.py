@@ -1,7 +1,7 @@
 import bottle
-from modelpravi import *
+from model import *
 from datetime import date
-from random import *
+from random import randint
 
 @bottle.get('/')
 def uporabnik():
@@ -49,8 +49,7 @@ def domaca_stran():
         return bottle.template('zacetna_stran.tpl', login = False)
     ime_priimek = racun.lastnik
     meseci = imena_mesecev
-    cas = date.today().strftime("%d-%m-%y")
-    return bottle.template('domaca_stran.tpl', seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci, cas = cas, ime_priimek = ime_priimek, racunid = racunid)
+    return bottle.template('domaca_stran.tpl', seznamT=racun.seznam_transakcij, total=racun.stanje, meseci = meseci, ime_priimek = ime_priimek, racunid = racunid)
 
 @bottle.get('/domaca_stran/odjava/')
 def odjavi_me():
@@ -100,7 +99,8 @@ def analiza_podatkov():
 def get_seznam_transakcij():
     racun=naloziRacun(int(bottle.request.get_cookie("racunid")))
     seznamT = racun.seznam_transakcij
-    return bottle.template('transakcije.tpl', seznamT = seznamT)
+    cas = date.today().strftime("%d-%m-%y")
+    return bottle.template('transakcije.tpl', seznamT = seznamT, cas=cas)
 
 @bottle.get('/opozorilo/')
 def opozorilo_pridobi_kategorijo():
@@ -124,16 +124,26 @@ def opozorilo_rezultat():
 @bottle.get('/opozorilo/odstrani_opozorilo/')
 def pridobi_kategorije():
     seznamK = Kategorija().getSeznamKategorij("Odhodek")
-    return bottle.template('odstrani_opozorilo.tpl', seznamK = seznamK)
+    racun = naloziRacun(int(bottle.request.get_cookie("racunid")))
+    opozorila_slovar = racun.slovar_opozoril
+    seznam_kategorij_opozorila = []
+    for kategorija in opozorila_slovar.keys():
+        seznam_kategorij_opozorila.append(kategorija)
+    seznam_kategorij_neopozorila = [kategorija for kategorija in seznamK if kategorija not in seznam_kategorij_opozorila]
+    return bottle.template('odstrani_opozorilo.tpl', seznam_kategorij_opozorila = seznam_kategorij_opozorila, seznam_kategorij_neopozorila = seznam_kategorij_neopozorila)
 
 @bottle.post('/odstranjeno/')
 def odstrani():
     kategorija_limit = bottle.request.forms.kategorija_limit
     racun = naloziRacun(int(bottle.request.get_cookie("racunid")))
-    racun.odstrani_opozorilo(kategorija_limit)
-    shraniRacun(racun)
-    return bottle.redirect('/odstranjeno/')
-
+    if kategorija_limit in racun.slovar_opozoril:
+        racun.odstrani_opozorilo(kategorija_limit)
+        shraniRacun(racun)
+        return bottle.redirect('/odstranjeno/')
+    else:
+        return bottle.template('uspesna_nastavitev_odstranitev', nastavi = False)
+        
+    
 @bottle.get('/odstranjeno/')
 def odstrani_rezultat():
     return bottle.template('uspesna_nastavitev_odstranitev', nastavi = False)
