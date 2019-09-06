@@ -1,11 +1,11 @@
 {
   "lastnik": "Klara \u0160irca",
   "id": 19990,
-  "stanje": 15120,
+  "stanje": 15170,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
-      "znesek": 0,
+      "znesek": 50,
       "tip": "Dohodek",
       "kategorija": "\u017depnina",
       "komentar": "za mesec avgust"
@@ -131,15 +131,15 @@
     },
     {
       "cas": 1567776793.592106,
-      "znesek": 55.0,
+      "znesek": 55,
       "tip": "Dohodek",
       "kategorija": "Pla\u010da",
       "komentar": "hm"
     }
   ],
   "slovar_opozoril": {
-    "Obleka": "50",
-    "Transport": "55",
-    "Hrana": "50"
+    "Najemnina": "1000",
+    "Prosti \u010das": "100",
+    "Obleka": ""
   }
 }
