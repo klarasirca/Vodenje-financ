@@ -27,7 +27,7 @@ class Kategorija:
             "Žepnina", "Pokojnina", "Najemnina",
             "Nagrada", "Ostalo"]
 
-    def getSeznamKategorij(self, tip):
+    def pridobi_seznam_kategorij(self, tip):
         if tip == 'Odhodek':
             return self.seznam_kategorij_odhodek
         else:
@@ -72,25 +72,25 @@ class Racun:
 
             
 def ustvari_racun(id, ime):
-    racunTemplate = naloziRacun("template")
+    racunTemplate = nalozi_racun("template")
     racunTemplate.id = id
     racunTemplate.lastnik = ime 
-    shraniRacun(racunTemplate)
+    shrani_racun(racunTemplate)
 
 
 
-def shraniRacun(racun: Racun):
-    jsonRacun = obj2json(racun)
+def shrani_racun(racun: Racun):
+    json_racun = obj2json(racun)
     with open("racun_" + str(racun.id) + ".json", "w+") as file:
-        file.write(jsonRacun)
+        file.write(json_racun)
 
 
-def naloziRacun(racunId):
+def nalozi_racun(racunId):
     if os.path.exists("racun_" + str(racunId) + ".json"):
-        jsonRacun = ""
+        json_racun = ""
         with open("racun_" + str(racunId) + ".json", "r") as file:
-            jsonRacun = file.read()
-        obj_racun = json2obj(jsonRacun)
+            json_racun = file.read()
+        obj_racun = json2obj(json_racun)
         return obj_racun
     else:
         print("Račun ne obstaja")
