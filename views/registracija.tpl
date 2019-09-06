@@ -3,7 +3,7 @@
 <div class ="container">
 
 <div align="center">
-<h1> Dobrodošli na strani za vodenje osebnih financ! </h1>
+<h1> Vodenje osebnih financ </h1>
 </div>
 
 <h5>V polje vnesite svoje ime ter priimek, program pa vam bo zgeneriral naključno številko računa, s katero se boste kasneje lahko vpisali.</h5>

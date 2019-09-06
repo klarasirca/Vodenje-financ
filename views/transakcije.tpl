@@ -3,6 +3,9 @@
 
 <div style="flex: 1">
 
+<div align="right">
+<h5>Datum: {{cas}}</h5>
+</div>
 
 <h3>Transakcije:</h3>
 <br>

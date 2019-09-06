@@ -3,7 +3,7 @@
 <div class ="container">
 
 <div align="center">
-<h1> Dobrodošli na strani za vodenje osebnih financ! </h1>
+<h1>Vodenje osebnih financ</h1>
 </div>
 
 <h5>Če želite, da so vaši računi čisti, vaša denarnica organizirana ter polna, se vpišite ter začnite z vodenjem svojih osebnih financ že danes!</h5>
@@ -34,15 +34,5 @@
 </form>
 
 </div>
-
-
-
-
-
-
-
-
-<div align="right">
-    <footer>© 2019, Klara Širca</footer>
 </div>
-</div>
+
