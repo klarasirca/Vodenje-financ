@@ -39,7 +39,6 @@ def domaca_stran():
     ime_priimek = bottle.request.get_cookie("ime_priimek")
     racunid = bottle.request.get_cookie("racunid")
     racun = nalozi_racun(racunid)
-    print(racunid)
     if racun == None:
         return bottle.template('zacetna_stran.tpl', login = False)
     ime_priimek = racun.lastnik
@@ -59,7 +58,10 @@ def dodaj_trans_tip(tip):
 @bottle.post('/dodaj_transakcijo')
 def dodaj_transakcijo():
     racunid = int(bottle.request.get_cookie("racunid"))
-    znesek = int(bottle.request.forms.znesek)
+    znesek = float(bottle.request.forms.znesek)
+    if "," in str(znesek):
+        str(znesek).replace(",", ".")
+        znesek = int(znesek)
     tip = bottle.request.forms.tip
     kategorija = bottle.request.forms.kategorija
     komentar = bottle.request.forms.komentar
@@ -84,12 +86,12 @@ def analiza_podatkov():
     mesec = int(bottle.request.query["mesec"])
     leto = int(bottle.request.query["leto"])
     slovar_zapravljeno = koliko_kategorija(racun, "Odhodek", leto, mesec)
-    slovar_zasluzeno = koliko_kategorija(racun, "Dohodek", leto, mesec)
+    slovar_zasluzeno = koliko_kategorija(racun, "Prihodek", leto, mesec)
     meseci = imena_mesecev
     skupaj_odhodki = skupaj_prihodki_odhodki(racun, "Odhodek", leto, mesec)
-    skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Dohodek", leto, mesec)
+    skupaj_prihodki = skupaj_prihodki_odhodki(racun, "Prihodek", leto, mesec)
     slovar_procentov_odhodek = procentualno_kategorija(racun, "Odhodek", leto, mesec)
-    slovar_procentov_prihodek = procentualno_kategorija(racun, "Dohodek", leto, mesec)
+    slovar_procentov_prihodek = procentualno_kategorija(racun, "Prihodek", leto, mesec)
     ali_je_limit_presezen = opozorilo(racun, racun.slovar_opozoril, leto, mesec)
     slovar_opozoril = racun.slovar_opozoril 
     return bottle.template("analiza.tpl", slovar_zapravljeno = slovar_zapravljeno, slovar_zasluzeno = slovar_zasluzeno, mesec = mesec, leto = leto, meseci = meseci, skupaj_odhodki = skupaj_odhodki, skupaj_prihodki = skupaj_prihodki, slovar_procentov_odhodek = slovar_procentov_odhodek, slovar_procentov_prihodek = slovar_procentov_prihodek, ali_je_limit_presezen = ali_je_limit_presezen, slovar_opozoril = slovar_opozoril)

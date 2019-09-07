@@ -1,7 +1,6 @@
 import json
 import datetime
 from datetime import datetime as dt
-from enum import IntEnum
 import os.path
 
 def json2obj(data): 
@@ -23,7 +22,7 @@ class Kategorija:
         , "Osebna nega", "Zavarovanja", "Najemnina", 
         "Telekomunikacijske storitve", "Krediti", "Ostalo"]
 
-    seznam_kategorij_dohodek = ["Plača", "Štipendija", "Honorar", "Posojilo", 
+    seznam_kategorij_prihodek = ["Plača", "Štipendija", "Honorar", "Posojilo", 
             "Žepnina", "Pokojnina", "Najemnina",
             "Nagrada", "Ostalo"]
 
@@ -31,7 +30,7 @@ class Kategorija:
         if tip == 'Odhodek':
             return self.seznam_kategorij_odhodek
         else:
-            return self.seznam_kategorij_dohodek
+            return self.seznam_kategorij_prihodek
 
 class Transakcija:
     def __init__(self, znesek, tip, kategorija, komentar):
@@ -57,7 +56,7 @@ class Racun:
         self.seznam_transakcij.append(transakcija)
         if transakcija.tip == 'Odhodek':
             self.stanje -= transakcija.znesek
-        elif transakcija.tip == 'Dohodek':
+        elif transakcija.tip == 'Prihodek':
             self.stanje += transakcija.znesek
 
     def nastavi_opozorilo(self, limit, kategorija):
