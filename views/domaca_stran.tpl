@@ -2,10 +2,9 @@
 
 
 <div class="container">
-
   <div align="right">
-    <h5><i class="fas fa-user-circle"></i> {{ime_priimek}} </h5>
-    <h5><i class="fas fa-list-ol"></i> Številka računa: {{racunid}} </h5>
+    <h5> <i class="fas fa-user-circle"></i> {{ime_priimek}} </h5>
+    <h5>  <i class="fas fa-list-ol"></i> Številka računa: {{racunid}} </h5>
     <h5><i class="fas fa-coins"></i> Na računu: {{ total }} EUR</h5>
   </div>
 
