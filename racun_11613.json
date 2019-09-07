@@ -1,0 +1,57 @@
+{
+  "lastnik": "Aki",
+  "id": 11613,
+  "stanje": -98268.3,
+  "seznam_transakcij": [
+    {
+      "cas": 1567885404.069868,
+      "znesek": 56.0,
+      "tip": "Prihodek",
+      "kategorija": "Pla\u010da",
+      "komentar": "d"
+    },
+    {
+      "cas": 1567885413.171916,
+      "znesek": 66.0,
+      "tip": "Odhodek",
+      "kategorija": "Hrana",
+      "komentar": "d"
+    },
+    {
+      "cas": 1567885421.130135,
+      "znesek": 777.0,
+      "tip": "Prihodek",
+      "kategorija": "\u017depnina",
+      "komentar": ""
+    },
+    {
+      "cas": 1567885429.047483,
+      "znesek": 89888.0,
+      "tip": "Odhodek",
+      "kategorija": "Potovanja",
+      "komentar": ""
+    },
+    {
+      "cas": 1567885437.732335,
+      "znesek": 777.0,
+      "tip": "Prihodek",
+      "kategorija": "Honorar",
+      "komentar": ""
+    },
+    {
+      "cas": 1567885447.093308,
+      "znesek": 9990.0,
+      "tip": "Odhodek",
+      "kategorija": "Zdravstvene storitve",
+      "komentar": ""
+    },
+    {
+      "cas": 1567885513.482503,
+      "znesek": 65.7,
+      "tip": "Prihodek",
+      "kategorija": "Nagrada",
+      "komentar": ""
+    }
+  ],
+  "slovar_opozoril": {}
+}
