@@ -4,13 +4,15 @@
 
         <div align="center">
                 <h1> Dodaj transakcijo:</h1>
+
+                <h5>Decimalna mesta zneska lahko ločite s piko ali vejico.</h5>
         </div>
 
         <div align="center">
                 <form action="/dodaj_transakcijo" method="post">
                         <input type="hidden" name="tip" value="{{ tip }}"/>
                         <h5>Znesek:
-                                <input type="number"  class="form-control-sm" name="znesek" value="0"><br></h5>
+                                <input type="number" step="0.01" class="form-control-sm" name="znesek" value="0"><br></h5>
                         
                         <div class="form-group col-md-4">
                                 <h5>Kategorija:

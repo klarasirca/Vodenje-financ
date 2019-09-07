@@ -9,6 +9,11 @@
 
   <h3>Transakcije:</h3>
   <br>
+
+  <div align="left">
+    <h4><a href="/domaca_stran/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Domov</a></h4>
+  </div>
+
   <table class="table">
     <tr>
       <th>Znesek</th>    
@@ -16,7 +21,6 @@
       <th>Kategorija</th> 
       <th>Datum</th>
       <th>Komentar</th>
-
     </tr>
   
     % for trans in seznam_transakcij:

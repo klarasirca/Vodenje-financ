@@ -5,7 +5,7 @@
   <div align="right">
     <h5> <i class="fas fa-user-circle"></i> {{ime_priimek}} </h5>
     <h5>  <i class="fas fa-list-ol"></i> Številka računa: {{racunid}} </h5>
-    <h5><i class="fas fa-coins"></i> Na računu: {{ total }} EUR</h5>
+    <h5><i class="fas fa-coins"></i> Na računu: {{"{:.2f}".format(total)}} EUR</h5>
   </div>
 
   <div class="mx-auto" align="center" style="width: 600px;">
@@ -21,7 +21,7 @@
           Dodaj transakcijo
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/Dohodek">Dohodek</a>
+          <a class="dropdown-item" href="/Prihodek">Prihodek</a>
           <a class="dropdown-item" href="/Odhodek">Odhodek</a>
         </div>
       </div>

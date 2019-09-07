@@ -76,16 +76,19 @@
 
 </head>
 
-
-<div align="center">
-  % if mesec == 0:
-    <h1> Statistika za obdobje: Leto {{leto}} </h1>
-  %else:
-    <h1> Statistika za obdobje: {{meseci[mesec - 1]}}  {{leto}} </h1>
-  %end
-</div>
-
 <div class="container">
+  <div align="right">
+    <h4><a href="/domaca_stran/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Domov</a></h4>
+  </div>
+
+  <div align="center">
+    % if mesec == 0:
+      <h1> Statistika za obdobje: Leto {{leto}} </h1>
+    %else:
+      <h1> Statistika za obdobje: {{meseci[mesec - 1]}}  {{leto}} </h1>
+    %end
+  </div>
+
   %if slovar_zapravljeno == {} and slovar_zasluzeno == {}:
     <div align="center">
       <h5> Ni še/bilo dodanih transakcij!</h5>
@@ -134,13 +137,13 @@
         %for kategorija in slovar_zapravljeno.keys():
           <tr>
             <td>{{kategorija}}</td>
-            <td>{{slovar_zapravljeno[kategorija]}}</td>
+            <td>{{"{:.2f}".format(slovar_zapravljeno[kategorija])}}</td>
             <td>{{slovar_procentov_odhodek[kategorija]}} %</td>
           </tr>
         %end
         <tr>
           <td>Skupaj:</td>
-          <td>{{skupaj_odhodki}}</td>
+          <td>{{"{:.2f}".format(skupaj_odhodki)}}</td>
           <td>100 %</td>
         </tr>
       </tbody>
@@ -160,18 +163,19 @@
         %for kategorija in slovar_zasluzeno.keys():
           <tr>
             <td>{{kategorija}}</td>
-            <td>{{slovar_zasluzeno[kategorija]}}</td>
+            <td>{{"{:.2f}".format(slovar_zasluzeno[kategorija])}}</td>
             <td>{{slovar_procentov_prihodek[kategorija]}} %</td>
           </tr>
         %end
         <tr>
           <td>Skupaj:</td>
-          <td>{{skupaj_prihodki}}</td>
+          <td>{{"{:.2f}".format(skupaj_prihodki)}}</td>
           <td>100 %</td>
         </tr>
       </tbody>
     </table>
 
   </div>
+
 </div>
 
