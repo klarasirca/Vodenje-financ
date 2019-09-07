@@ -1,0 +1,29 @@
+{
+  "lastnik": "Pika Ivana Kostanj\u0161ek",
+  "id": 14793,
+  "stanje": 95423,
+  "seznam_transakcij": [
+    {
+      "cas": 1567845337.505084,
+      "znesek": 86533,
+      "tip": "Dohodek",
+      "kategorija": "Nagrada",
+      "komentar": "foto nate\u010daj"
+    },
+    {
+      "cas": 1567845376.11983,
+      "znesek": 875,
+      "tip": "Odhodek",
+      "kategorija": "Potovanja",
+      "komentar": "Pariz"
+    },
+    {
+      "cas": 1567845399.44228,
+      "znesek": 9765,
+      "tip": "Dohodek",
+      "kategorija": "\u0160tipendija",
+      "komentar": "GIMB"
+    }
+  ],
+  "slovar_opozoril": {}
+}
