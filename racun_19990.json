@@ -1,7 +1,7 @@
 {
   "lastnik": "Klara \u0160irca",
   "id": 19990,
-  "stanje": 5762.35,
+  "stanje": 5802.35,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
@@ -149,10 +149,27 @@
       "tip": "Odhodek",
       "kategorija": "Potovanja",
       "komentar": "Arseletronica Hotel"
+    },
+    {
+      "cas": 1567885031.545758,
+      "znesek": 70.0,
+      "tip": "Prihodek",
+      "kategorija": "Ostalo",
+      "komentar": "darilo"
+    },
+    {
+      "cas": 1567885055.5801,
+      "znesek": 30.0,
+      "tip": "Odhodek",
+      "kategorija": "Telekomunikacijske storitve",
+      "komentar": "Telefon"
     }
   ],
   "slovar_opozoril": {
     "Obleka": "",
-    "Transport": "50"
+    "Prosti \u010das": "100",
+    "Osebna nega": "30",
+    "Transport": "10",
+    "Potovanja": "100"
   }
 }
