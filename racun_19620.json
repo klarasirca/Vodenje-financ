@@ -6,7 +6,7 @@
     {
       "cas": 1567775370.469335,
       "znesek": 37,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Nagrada",
       "komentar": "Hvala, Klari"
     },
@@ -20,7 +20,7 @@
     {
       "cas": 1567776641.769514,
       "znesek": 4,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Honorar",
       "komentar": "september"
     },
@@ -34,7 +34,7 @@
     {
       "cas": 1567776667.164949,
       "znesek": 11,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Ostalo",
       "komentar": "darilo - mami"
     }

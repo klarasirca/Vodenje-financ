@@ -1,33 +1,33 @@
 {
   "lastnik": "Klara \u0160irca",
   "id": 19990,
-  "stanje": 15198,
+  "stanje": 5762.35,
   "seznam_transakcij": [
     {
       "cas": 1567166162.957272,
-      "znesek": 50,
-      "tip": "Dohodek",
+      "znesek": 50.6,
+      "tip": "Prihodek",
       "kategorija": "\u017depnina",
       "komentar": "za mesec avgust"
     },
     {
       "cas": 1567166191.123699,
-      "znesek": 200,
+      "znesek": 200.56,
       "tip": "Odhodek",
       "kategorija": "Hrana",
       "komentar": "Hofer"
     },
     {
       "cas": 1567168206.914614,
-      "znesek": 134,
-      "tip": "Dohodek",
+      "znesek": 134.0,
+      "tip": "Prihodek",
       "kategorija": "\u0160tipendija",
       "komentar": "mesec sep"
     },
     {
       "cas": 1567168463.918705,
       "znesek": 120,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "\u017depnina",
       "komentar": "sep"
     },
@@ -40,22 +40,22 @@
     },
     {
       "cas": 1567169991.596217,
-      "znesek": 30,
-      "tip": "Dohodek",
+      "znesek": 3000,
+      "tip": "Prihodek",
       "kategorija": "Pla\u010da",
       "komentar": "majhna pla\u010da"
     },
     {
       "cas": 1567338503.016652,
       "znesek": 130,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "\u0160tipendija",
       "komentar": "\u0161tipendija sep"
     },
     {
       "cas": 1567351636.302324,
-      "znesek": 12345,
-      "tip": "Dohodek",
+      "znesek": 345,
+      "tip": "Prihodek",
       "kategorija": "Najemnina",
       "komentar": "stanovanje v Lj"
     },
@@ -76,7 +76,7 @@
     {
       "cas": 1567450955.735629,
       "znesek": 2000,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Nagrada",
       "komentar": "sugar daddy"
     },
@@ -104,13 +104,13 @@
     {
       "cas": 1567522733.579222,
       "znesek": 34,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Nagrada",
       "komentar": "mami"
     },
     {
       "cas": 1567544121.07891,
-      "znesek": 44,
+      "znesek": 44.54,
       "tip": "Odhodek",
       "kategorija": "Dom",
       "komentar": "vaza"
@@ -118,13 +118,13 @@
     {
       "cas": 1567544174.738955,
       "znesek": 2222,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Pla\u010da",
       "komentar": "pla\u010da sep"
     },
     {
       "cas": 1567766962.869624,
-      "znesek": 56,
+      "znesek": 56.67,
       "tip": "Odhodek",
       "kategorija": "Hrana",
       "komentar": "spar"
@@ -132,34 +132,27 @@
     {
       "cas": 1567776793.592106,
       "znesek": 55,
-      "tip": "Dohodek",
+      "tip": "Prihodek",
       "kategorija": "Pla\u010da",
       "komentar": "hm"
     },
     {
-      "cas": 1567844030.754857,
-      "znesek": 33,
-      "tip": "Dohodek",
-      "kategorija": "Pla\u010da",
-      "komentar": ""
-    },
-    {
-      "cas": 1567845103.309135,
-      "znesek": 45,
-      "tip": "Dohodek",
-      "kategorija": "Nagrada",
-      "komentar": "nagrada za pridnost"
-    },
-    {
-      "cas": 1567845118.370287,
-      "znesek": 50,
+      "cas": 1567883855.279521,
+      "znesek": 55.7,
       "tip": "Odhodek",
-      "kategorija": "Dom",
-      "komentar": "pribor"
+      "kategorija": "Hrana",
+      "komentar": "Bila"
+    },
+    {
+      "cas": 1567884543.909652,
+      "znesek": 320.78,
+      "tip": "Odhodek",
+      "kategorija": "Potovanja",
+      "komentar": "Arseletronica Hotel"
     }
   ],
   "slovar_opozoril": {
     "Obleka": "",
-    "Hrana": "10"
+    "Transport": "50"
   }
 }
