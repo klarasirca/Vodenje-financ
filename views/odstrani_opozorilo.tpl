@@ -1,5 +1,10 @@
 %rebase('osnova')
 
+<div align="right">
+    <h4><a href="/domaca_stran/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Domov</a></h4>
+  </div>
+
+
 <div align="center">
         <h1>Odstranite opozorilo</h1>
 
@@ -7,15 +12,17 @@
 
 
         <form action="/odstranjeno/" method="POST">
-                <h5>Kategorija: </h5>
-                        <select name = "kategorija_limit" class="form-control-sm">
+                <h5>Kategorija: 
+                        <select name = "kategorija_limit" class="form-control-sm" required>
+                                <option value="">Izberi</option>
                                 %for kategorija in seznam_kategorij_opozorila:
                                         <option value="{{ kategorija }}">{{ kategorija }}</option>
                                 %end
                                 %for kategorija in seznam_kategorij_neopozorila:
                                         <option value="{{ kategorija }}" disabled>{{ kategorija }}</option>
                                 %end
-                        </select> <br>
+                        </select> <br></h5>
+
                 <input class="btn btn-outline-secondary" type="submit" value="Odstrani">
         </form>
 </div>
